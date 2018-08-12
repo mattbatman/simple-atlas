@@ -1,0 +1,22 @@
+{
+  "name": "simple-atlas",
+  "version": "1.0.0",
+  "description": "a recreation of Mike Bostock's world-atlas",
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Matt Batman",
+    "url": "https://mattbatman.com",
+  },
+  "scripts": {
+    "hello-world": "bash hello-world"
+  },
+  "dependencies": {
+    "d3-geo-projection": "^2.4.0",
+    "ndjson-cli": "^0.3.1",
+    "shapefile": "^0.6.6",
+    "topojson-client": "^3.0.0",
+    "topojson-server": "^3.0.0",
+    "topojson-simplify": "^3.0.2",
+    "world-atlas": "^1.1.4"
+  }
+}

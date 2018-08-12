@@ -1,0 +1,20 @@
+#!/bin/bash
+
+get_data() {
+  mkdir -p map-data
+  curl -z map-data/ne_$1_admin_0_countries.zip -o map-data/ne_$1_admin_0_countries.zip http://naciscdn.org/naturalearth/$1/cultural/ne_$1_admin_0_countries.zip
+  unzip -od map-data map-data/ne_$1_admin_0_countries.zip
+}
+
+create_topo_maps() {
+  get_data 110m
+  mkdir -p dist
+  geo2topo -q 1e5 -n countries=<( \
+      shp2json -n map-data/ne_$1_admin_0_countries.shp \
+        | ndjson-map '(d.id = d.properties.NAME_EN, delete d.properties, d)' \
+        | geostitch -n) \
+    | topomerge land=countries \
+     > dist/$1.json
+}
+
+create_topo_maps 110m
